@@ -22,9 +22,9 @@ public class HelloWorldServlet extends HttpServlet {
             throws ServletException, IOException {
 
         // フォワード先のjspファイルパス
-        String jsp_path = "/WEB-INF/jsp/hello.jsp";
+        String jspPath = "/WEB-INF/jsp/hello.jsp";
         //JSP実行のためのハンドル生成
-        RequestDispatcher dispatcher = request.getRequestDispatcher(jsp_path);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(jspPath);
         //forwardでパスやリクエスト情報をJSPに渡す　レスポンスを生成させる
         dispatcher.forward(request, response);
     }
