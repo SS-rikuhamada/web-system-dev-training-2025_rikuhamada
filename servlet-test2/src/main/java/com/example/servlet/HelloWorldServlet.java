@@ -1,8 +1,8 @@
 package com.example.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,23 +21,11 @@ public class HelloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // レスポンスをHTMLで返す
-        response.setContentType("text/html; charset=UTF-8");
-
-        // responseへ書き込むための文字ストリームを取得
-        PrintWriter out = response.getWriter();
-
-        // out.println呼び出し度にHTMLをストリーム経由でレスポンスバッファに書き込む
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>HELLO</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<div>");
-        out.println("  <div>HELLO, WORLD!</div>");
-        out.println("</div>");
-        out.println("</body>");
-        out.println("</html>");
+        // フォワード先のjspファイルパス
+        String jsp_path = "/WEB-INF/jsp/hello.jsp";
+        //JSP実行のためのハンドル生成
+        RequestDispatcher dispatcher = request.getRequestDispatcher(jsp_path);
+        //forwardでパスやリクエスト情報をJSPに渡す　レスポンスを生成させる
+        dispatcher.forward(request, response);
     }
 }
